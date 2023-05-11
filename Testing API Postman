@@ -1,0 +1,45 @@
+const response = pm.response.json();
+pm.test("Check Name", ()=>
+{
+    a = pm.expect(response.name).eql('Jane');
+});
+
+pm.test("Jane has Instagram?", ()=>
+{
+    let hasInstagram = false;
+    response.socialMedia.forEach((item) =>  { 
+    {
+        if(item ==='Instagram')
+        {
+            hasInstagram = true;
+            console.log('Jane has Instagram');
+        }}});
+    pm.expect(hasInstagram).eql(true);
+    
+}
+);
+
+pm.test("Jane has tiktok?", ()=>
+{
+    let hastiktok = false;
+    response.socialMedia.forEach((item) => 
+    {
+        if(item ==='tiktok')
+        {
+            hastiktok = true;
+            
+        }});
+    pm.expect(hastiktok).is.eql(true);
+    if(hastiktok===true)
+    {
+    console.log('Jane has tiktok');  
+    }
+    
+    
+}
+
+);
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
